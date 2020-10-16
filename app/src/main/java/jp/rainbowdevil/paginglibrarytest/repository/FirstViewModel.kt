@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.paging.*
 
 class FirstViewModel(
-    val githubRepository: GithubRepository
 ) : ViewModel() {
 
     private val factory :DataSource.Factory<Int, String> = TestDataSourceFactory()
