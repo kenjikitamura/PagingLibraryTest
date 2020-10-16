@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.*
 
-class FirstViewModel() : ViewModel() {
+class FirstViewModel : ViewModel() {
     private val factory :DataSource.Factory<Int, String> = TestDataSource.TestDataSourceFactory()
     val list: LiveData<PagedList<String>> = factory.toLiveData(50, 0)
 }

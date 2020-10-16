@@ -18,7 +18,6 @@ import org.koin.android.viewmodel.compat.ViewModelCompat
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class FirstFragment : Fragment() {
-
     lateinit var adapter : TestItemAdapter
 
     private val viewModel : FirstViewModel by ViewModelCompat.viewModel(
@@ -30,7 +29,7 @@ class FirstFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        adapter = TestItemAdapter(requireContext())
+        adapter = TestItemAdapter()
         val binding = jp.rainbowdevil.paginglibrarytest.databinding.FragmentFirstBinding.inflate(layoutInflater)
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter
@@ -39,10 +38,6 @@ class FirstFragment : Fragment() {
         })
         // Inflate the layout for this fragment
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 
     private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<String>() {
@@ -55,7 +50,7 @@ class FirstFragment : Fragment() {
         val textView = itemView.findViewById<TextView>(R.id.text)
     }
 
-    inner class TestItemAdapter(context: Context) : PagedListAdapter<String, TestItemViewHolder>(DIFF_CALLBACK) {
+    inner class TestItemAdapter() : PagedListAdapter<String, TestItemViewHolder>(DIFF_CALLBACK) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TestItemViewHolder {
             val inflater = LayoutInflater.from(context)
             return TestItemViewHolder(inflater.inflate(R.layout.item, parent, false))
@@ -65,7 +60,6 @@ class FirstFragment : Fragment() {
             holder.textView.text = getItem(position)
         }
     }
-
 }
 
 
