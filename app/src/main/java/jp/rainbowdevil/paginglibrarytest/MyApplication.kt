@@ -4,6 +4,7 @@ import android.app.Application
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import jp.rainbowdevil.paginglibrarytest.api.GithubApi
+import jp.rainbowdevil.paginglibrarytest.repository.FirstViewModel
 import jp.rainbowdevil.paginglibrarytest.repository.GithubRepository
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -55,11 +56,8 @@ class MyApplication : Application() {
             val retrofit = get(Retrofit::class.java)
             retrofit.create(GithubApi::class.java)
         }
-        single {
-            GithubRepository(get())
-        }
-        factory {
-            MainViewModel(get())
-        }
+        single { GithubRepository(get()) }
+        factory { MainViewModel(get()) }
+        factory { FirstViewModel(get()) }
     }
 }

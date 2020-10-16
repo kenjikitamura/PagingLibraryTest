@@ -7,25 +7,29 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import jp.rainbowdevil.paginglibrarytest.repository.FirstViewModel
+import org.koin.android.viewmodel.compat.ViewModelCompat
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class FirstFragment : Fragment() {
 
+    private val viewModel : FirstViewModel by ViewModelCompat.viewModel(
+        this,
+        FirstViewModel::class.java
+    )
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        val binding = jp.rainbowdevil.paginglibrarytest.databinding.FragmentFirstBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        view.findViewById<Button>(R.id.button_first).setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        }
     }
 }
