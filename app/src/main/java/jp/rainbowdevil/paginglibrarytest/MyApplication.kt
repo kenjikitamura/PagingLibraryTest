@@ -7,6 +7,7 @@ import jp.rainbowdevil.paginglibrarytest.api.GithubApi
 import jp.rainbowdevil.paginglibrarytest.repository.GithubRepository
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -36,6 +37,9 @@ class MyApplication : Application() {
                     .build()
 
             val httpClient = OkHttpClient.Builder()
+                    .addInterceptor(HttpLoggingInterceptor().apply {
+                        level = HttpLoggingInterceptor.Level.BODY
+                    })
                     .addInterceptor(Interceptor { chain ->
                         val original = chain.request()
                         return@Interceptor chain.proceed(original)

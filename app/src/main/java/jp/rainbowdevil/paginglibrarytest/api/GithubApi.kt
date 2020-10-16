@@ -16,5 +16,11 @@ interface GithubApi {
 
 data class SearchRepositoriesResult (
     @Json(name = "total_count")
-    val totalCount: Int
+    val totalCount: Int,
+    val items : List<SearchRepositoryItem>
+)
+
+data class SearchRepositoryItem (
+    val id: Int,
+    val name: String
 )
