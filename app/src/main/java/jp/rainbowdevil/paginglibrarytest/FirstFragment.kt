@@ -6,15 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import jp.rainbowdevil.paginglibrarytest.repository.FirstViewModel
 import org.koin.android.viewmodel.compat.ViewModelCompat
 
 /**
